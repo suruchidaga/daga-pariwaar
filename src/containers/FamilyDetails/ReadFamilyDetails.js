@@ -28,7 +28,6 @@ export default function ReadFamilyDetails(props) {
 
   return (
     <FamilyDetailsWrapper>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>Family Details</div>
         <div className="row">
         <div className="col text-center">
             <div className="row mt-3 d-flex justify-content-center">

@@ -73,7 +73,7 @@ export default function Dashboard() {
             </Content>
             <Footer style={styles.footer}>
               DESIGNED AND DEVELOPED BY{" "}
-              <span style={{ color: "#C8527A" }}>TUCIT</span>
+              <span style={{ color: "#C8527A" }}>DAGAs</span>
             </Footer>
           </Layout>
         </Layout>
