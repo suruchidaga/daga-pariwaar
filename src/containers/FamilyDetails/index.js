@@ -74,13 +74,16 @@ function fillRemainingDetailsInParent(parentItem, childItem) {
     if (parentItem.RESADD !='') {
         parentItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
     }
-    if (parentItem.RESADD =='' && childItem.RESADD !='') {
+    if (parentItem.RESADD =='' && childItem.RESADD !='' && (childItem.Parent == parentItem.No) &&
+     (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['RESADD'] = replaceNewLineWithBreakTag(childItem.RESADD);
     }
-    if (parentItem.RESPHNO =='' && childItem.RESPHNO !='') {
+    if (parentItem.RESPHNO =='' && childItem.RESPHNO !='' && (childItem.Parent == parentItem.No) &&
+        (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['RESPHNO'] = childItem.RESPHNO;
     }
-    if (childItem.Relation == 'H' || childItem.Relation == 'W' ) {
+    if (childItem.Relation == 'H' || childItem.Relation == 'W' && (childItem.Parent == parentItem.No) &&
+        (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['SPOUSE'] = childItem.NAME;
     }
     return parentItem;
@@ -101,16 +104,16 @@ console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
         (parentItem.Relation == '' || parentItem.Relation == 'D')) ? parentItem.NAME :
             (parentItem.children.length > 0 && parentItem.children[0].Relation == 'W' ? parentItem.children[0].NAME : '');
     }
-    if (childItem.Relation == 'W' || childItem.Relation == 'H') {
+    if ((childItem.Relation == 'W' || childItem.Relation == 'H') && (childItem.Parent == parentItem.No)) {
         childItem['FATHER'] = parentItem.FATHERINLAW;
         childItem['MOTHER'] = parentItem.MOTHERINLAW;
         childItem['FATHERINLAW'] = parentItem.FATHER;
         childItem['MOTHERINLAW'] = parentItem.MOTHER;
     }
-    if (childItem.RESADD =='') {
+    if (childItem.RESADD =='' && (childItem.Parent == parentItem.No)) {
         childItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
     }
-    if (childItem.RESPHNO =='') {
+    if (childItem.RESPHNO =='' && (childItem.Parent == parentItem.No)) {
         childItem['RESPHNO'] = parentItem.RESPHNO;
     }
     console.log(childItem) ;
