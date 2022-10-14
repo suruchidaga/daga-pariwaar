@@ -1,110 +1,152 @@
-import { useEffect, useState } from "react";
-import { Typography , Card, Avatar, List, Divider, Modal, Form, Row, Col } from "antd";
+import ContentHeader from "../ContentHeader";
+import { loadState } from "@lib/helpers/localStorage";
+import SearchFamily from "./SearchFamily";
+import ReadFamilyDetails from "./ReadFamilyDetails";
+import UpcomingEvents from "./UpcomingEvents";
+import FamilyDetailsWrapper from "./styles";
+//import { cloneDeep } from "lodash";// Add cloneDeep to the lodash library
+import React, { useRef, useState } from "react";
+import { Tree } from "./FamilyTree";
+//import Tree from "../../components/uielements/tree";
 import {
-  InfoCircleOutlined,
-  ArrowRightOutlined,
-  PlusCircleOutlined,
+  DownOutlined,
 } from "@ant-design/icons";
+import familyDetails from "./familyDetails.json";
 
-const UpcomingEvents = (props) => {
-  // State variable declartion
-  //const classes = useStyles();
-  const todayDate = new Date();
-  const [birthdayData, setBirthdayData] = useState([]);
-  const [anniversaryData, setAnniversaryData] = useState([]);
-  const [currentDate, setCurrentDate] = useState(new Date());
+function unflatten(items) {
+  var tree = [],
+      mappedArr = {}
 
-  // useEffect will call each time currentDate changes
-  useEffect(() => {
-    getBirthdayData(currentDate);
-    getAnniversaryData(currentDate);
-    // eslint-disable-next-line
-  }, [currentDate]);
+  // Build a hash table and map items to objects
+  items.forEach(function(item) {
+    var key = item.No;
+    if (!mappedArr.hasOwnProperty(key)) { // in case of duplicates
+      mappedArr[key] = item; // the extracted id as key, and the item as value
+      mappedArr[key].children = [];  // under each item, add a key "children" with an empty array as value
+    }
+  })
 
-  // Calculating the age
-  const getDate = (eventDateStr) => {
-    const [day, month, year] = eventDateStr.split('.');
-    const date = new Date(+year, month - 1, +day);
-    //console.log(date);
-    return date;
-  };
+  // If root-level nodes are not included in hash table, include them
+  items.forEach(function(item) {
+    var parentId = item.Parent;
+    if (!mappedArr.hasOwnProperty(parentId)) {
+      // make up an item for root-level node
+      const newItem = item;
+      newItem.key = 0;
+      newItem.Name = item.NAME;
+      newItem.Parent = item.Parent;
+      mappedArr[parentId] = newItem; // the parent id as key, and made-up an item as value
+      mappedArr[parentId].children = [];
+    }
+  })
 
-  const getAge = (eventDateStr) => {
-    const date = getDate(eventDateStr);
-    const todayDate = new Date();
-    const diff = todayDate.getTime() - date.getTime();
-    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-  };
+  // Loop over hash table
+  for (var key in mappedArr) {
+    if (mappedArr.hasOwnProperty(key)) {
+      const mappedElem = mappedArr[key];
+      mappedElem.key = mappedElem.No;
 
-  // Filtering the current date data
-  const getBirthdayData = (date) => {
-    const filtedData = props.familyData.filter(
-      (obj) =>
-        (getDate(obj.DOB).getDate() >= date.getDate() &&
-        getDate(obj.DOB).getMonth() === date.getMonth()) /*||
-        (//new Date(obj.DOA).getDate() === date.getDate() &&
-        new Date(obj.DOA).getMonth() === date.getMonth())*/
-    );
-    setBirthdayData(filtedData);
-  };
+      // If the element is not at the root level, add it to its parent array of children. Note this will continue till we have only root level elements left
+      if (mappedElem.Parent) {
+        var parentId = mappedElem.Parent;
+        var childItem = mappedElem;
+        var parentItem = mappedArr[parentId];
+        parentItem = fillRemainingDetailsInParent(parentItem, childItem);
+        childItem = fillRemainingDetails(parentItem, childItem);
+        console.log("after fillRemainingDetails: ") ;
+                console.log(childItem) ;
 
-  // Filtering the current date data
-  const getAnniversaryData = (date) => {
-    const filtedData = props.familyData.filter(
-      (obj) =>
-        ((obj.DOA != '' && getDate(obj.DOA).getDate()) >= date.getDate() &&
-        (obj.DOA != '' && getDate(obj.DOA).getMonth()) === date.getMonth()) /*||
-        (//new Date(obj.DOA).getDate() === date.getDate() &&
-        new Date(obj.DOA).getMonth() === date.getMonth())*/
-    );
-    setAnniversaryData(filtedData);
-  };
 
-  // Handles the next date navigation
-  const handleNext = () => {
-    const nextDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
-    setCurrentDate(nextDate);
-  };
+        parentItem.children.push(childItem);
+      }
 
-  // Handles the previous date navigation
-  const handlePrev = () => {
-    const prevDate = new Date(currentDate.setDate(currentDate.getDate() - 1));
-    setCurrentDate(prevDate);
-  };
-  // Rendering components
+      // If the element is at the root level, directly push to the tree
+      else {
+        tree.push(mappedElem);
+      }
+    }
+  }
+
+  return tree[0];
+
+}
+function fillRemainingDetailsInParent(parentItem, childItem) {
+    if (parentItem.RESADD !='') {
+        parentItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
+    }
+    if (parentItem.RESADD =='' && childItem.RESADD !='') {
+        parentItem['RESADD'] = replaceNewLineWithBreakTag(childItem.RESADD);
+    }
+    if (parentItem.RESPHNO =='' && childItem.RESPHNO !='') {
+        parentItem['RESPHNO'] = childItem.RESPHNO;
+    }
+    if (childItem.Relation == 'H' || childItem.Relation == 'W' ) {
+        parentItem['SPOUSE'] = childItem.NAME;
+    }
+    return parentItem;
+}
+function fillRemainingDetails(parentItem, childItem) {
+console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
+    console.log(parentItem) ;
+    if (childItem.Relation == 'H' || childItem.Relation == 'W' ) {
+        childItem['DOA'] = parentItem.DOA;
+        childItem['SPOUSE'] = parentItem.NAME;
+    }
+    if (childItem.Relation == 'S' || childItem.Relation == 'D') {
+    console.log(parentItem.children.length)
+        childItem['FATHER'] = (parentItem.children != null &&
+        (parentItem.Relation == '' || parentItem.Relation == 'S')) ? parentItem.NAME :
+            (parentItem.children.length > 0 && parentItem.children[0].Relation == 'H' ? parentItem.children[0].NAME : '');
+        childItem['MOTHER'] = (parentItem.children != null &&
+        (parentItem.Relation == '' || parentItem.Relation == 'D')) ? parentItem.NAME :
+            (parentItem.children.length > 0 && parentItem.children[0].Relation == 'W' ? parentItem.children[0].NAME : '');
+    }
+    if (childItem.Relation == 'W' || childItem.Relation == 'H') {
+        childItem['FATHER'] = parentItem.FATHERINLAW;
+        childItem['MOTHER'] = parentItem.MOTHERINLAW;
+        childItem['FATHERINLAW'] = parentItem.FATHER;
+        childItem['MOTHERINLAW'] = parentItem.MOTHER;
+    }
+    if (childItem.RESADD =='') {
+        childItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
+    }
+    if (childItem.RESPHNO =='') {
+        childItem['RESPHNO'] = parentItem.RESPHNO;
+    }
+    console.log(childItem) ;
+    return childItem;
+}
+function replaceNewLineWithBreakTag(text) {
+  // Replace the \n with <br>
+    console.log(text);
+
+  var otext = text.replace(/(\r\n|\r|\n)/g, '<br/>');
+  // Update the value of paragraph
+  console.log(otext);
+  return otext;
+}
+
+export default function Events() {
+  const selectedMember = loadState("selectedMember");
+  const selectedMemberName = `${selectedMember?.name?.first} ${selectedMember?.name?.last}`;
+   const tree = [];
+   tree.push(unflatten(familyDetails));
+  const [treeData, setTreeData] = useState(() => tree);
+  const [rawFamilyData, setRawFamilyData] = useState(() => familyDetails);
+
+
+  //setTreeData(unflatten(familyDetails));
+  //setTreeData(unflatten(familyDetails));
+ /*const [rawFamilyData, setRawFamilyData] = useState({});
+  setRawFamilyData(familyDetails);
+  console.log(treeData);*/
+  console.log(treeData);
+  //<UpcomingEvents familyData = {rawFamilyData}/>
+
   return (
-    <>
-
-    <Card>
-        <List
-      header={<div>Upcoming Birthdays</div>}
-      footer={<div></div>}
-      bordered
-      dataSource={birthdayData}
-      renderItem={bObj => (
-        <List.Item>
-          <Typography.Text mark>{bObj.NAME} turns {getAge(bObj.DOB)} Years Old on {bObj.DOB}</Typography.Text>
-        </List.Item>
-      )}
-    />
-    </Card>
-    
-    <Card>
-        <List
-      header={<div>Upcoming Anniversaries</div>}
-      footer={<div></div>}
-      bordered
-      dataSource={anniversaryData}
-      renderItem={bObj => (
-        <List.Item>
-          <Typography.Text mark>{bObj.NAME}\'s anniversary  on {bObj.DOA}</Typography.Text>
-        </List.Item>
-      )}
-    />
-    </Card>
-    </>
-
+    <FamilyDetailsWrapper>
+      <ContentHeader headerTitle="Celebrations Time" />
+       <UpcomingEvents familyData = {rawFamilyData}/>
+    </FamilyDetailsWrapper>
   );
-};
-
-export default UpcomingEvents;
+}
