@@ -111,10 +111,9 @@ console.log(props);
                     <Col span={16}>{props.selectedRecords?.MOBILENO}</Col>
                   </Row>
                   <Divider style={{ margin: "15px 0" }} />
-                  <Row gutter={24} style={{ textAlign: "left", whiteSpace:"pre-line" }}>
+                  <Row gutter={24} style={{ textAlign: "left" }}>
                     <Col span={8}>Home Address</Col>
-                    <Col className="css-fix" span={16}>
-                    {props.selectedRecords?.RESADD}<br/>{props.selectedRecords?.RESPHNO}</Col>
+                    <Col span={16}>{props.selectedRecords?.RESADD}<br/>{props.selectedRecords?.RESPHNO}</Col>
                   </Row>
                   <Divider style={{ margin: "15px 0" }} />
                   <Row gutter={24} style={{ textAlign: "left" }}>
