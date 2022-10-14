@@ -41,7 +41,7 @@ const UpcomingEvents = (props) => {
     const date = getDate(eventDateStr);
     const todayDate = new Date();
     const diff = todayDate.getTime() - date.getTime();
-    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)) + 1;
   };
 
   // Filtering the current date data
