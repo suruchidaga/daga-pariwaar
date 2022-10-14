@@ -29,6 +29,14 @@ const UpcomingEvents = (props) => {
     return date;
   };
 
+  const getDateName = (eventDateStr) => {
+    const date = getDate(eventDateStr);
+    const nameOfMonth = date.toLocaleString('default', {
+  month: 'long',
+});
+    return date.getDate() + " " + nameOfMonth;
+  };
+
   const getAge = (eventDateStr) => {
     const date = getDate(eventDateStr);
     const todayDate = new Date();
@@ -83,7 +91,7 @@ const UpcomingEvents = (props) => {
       dataSource={birthdayData}
       renderItem={bObj => (
         <List.Item>
-          <Typography.Text mark>{bObj.NAME} turns {getAge(bObj.DOB)} Years Old on {bObj.DOB}</Typography.Text>
+          <Typography.Text mark>{bObj.NAME} turns {getAge(bObj.DOB)} Years Old on {getDateName(bObj.DOB)}</Typography.Text>
         </List.Item>
       )}
     />

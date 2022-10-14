@@ -145,9 +145,8 @@ export default function FamilyDetails() {
 
   return (
     <FamilyDetailsWrapper>
-      <ContentHeader headerTitle={selectedMemberName} />
+      <ContentHeader headerTitle="Family Details" />
       <ReadFamilyDetails treeData = {treeData}/>
-
     </FamilyDetailsWrapper>
   );
 }

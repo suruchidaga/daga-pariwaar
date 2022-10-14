@@ -3,6 +3,8 @@ import { isEmpty } from "lodash";
 import Loader from "@components/utility/loader";
 import { Link } from "react-router-dom";
 import FamilyDetailsWrapper from "../FamilyDetails/styles";
+import TreeIcon from "@assets/images/family_tree.jpeg";
+import EventsIcon from "@assets/images/events.jpg";
 
 export default function DefaultDashboard() {
   const [loading, setLoading] = useState(false);
@@ -23,40 +25,42 @@ export default function DefaultDashboard() {
 
   return (
     <FamilyDetailsWrapper>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>Family List</div>
+      <div style={{ fontSize: 28, fontWeight: "bold" }}>Welcome To Daga Pariwaar</div>
       {loading ? (
         <Loader />
       ) : (
         <ul className="card-grid">
-          {!isEmpty(list) &&
-            list.map((item, i) => (
-              <Link
-                to={{ pathname: `./dashboard/family-details` }}
-                onClick={() => {
-                  localStorage.setItem("selectedMember", JSON.stringify(item));
-                }}
-                key={i}
-              >
-                <li key={i} style={{ cursor: "pointer" }}>
-                  <article className="card">
+
+                <li key="family-tree" style={{ cursor: "pointer" }}>
+                <Link
+                    to={{ pathname: `./dashboard/family-details` }}
+                    key="family-tree-link"
+                >
+                    <article className="card">
                     <div className="card-image">
-                      <img src={item?.picture?.large} alt={item?.name?.first} />
+                      <img src={TreeIcon} alt="Family Details" />
                     </div>
                     <div className="card-content">
-                      <h3 className="card-name">{`${item?.name?.first} ${item?.name?.last}`}</h3>
-                      <ul className="card-list">
-                        <li>
-                          Phone: <span>9899915942</span>
-                        </li>
-                        <li>
-                          Gender: <span>{item?.gender}</span>
-                        </li>
-                      </ul>
+                      <h4 className="card-name">View Family Details</h4>
                     </div>
                   </article>
-                </li>
               </Link>
-            ))}
+              </li>
+              <li key="events" style={{ cursor: "pointer" }}>
+                <Link
+                    to={{ pathname: `./dashboard/family-events` }}
+                    key="family-events-link"
+                >
+                    <article className="card">
+                    <div className="card-image">
+                      <img src={EventsIcon} alt="Upcoming Birthdays / Anniversaries" />
+                    </div>
+                    <div className="card-content">
+                      <h4 className="card-name">Upcoming Birthdays / Anniversaries</h4>
+                    </div>
+                  </article>
+              </Link>
+              </li>
         </ul>
       )}
     </FamilyDetailsWrapper>
