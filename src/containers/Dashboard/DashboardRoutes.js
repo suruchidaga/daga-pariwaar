@@ -13,6 +13,10 @@ const routes = [
     component: lazy(() => import("@containers/FamilyDetails")),
   },
   {
+    path: "family-events",
+    component: lazy(() => import("@containers/FamilyDetails/Events")),
+  },
+  {
     path: "settings",
     component: lazy(() => import("@containers/Settings/Settings")),
   },
