@@ -28,6 +28,10 @@ const MemberDetails = (props) => {
     return text.replace(/\n/g, "<br />");
   }
 
+  function checkIfPunyaTithiExists(node) {
+    return (node != null && node.PunyaThitii != '') ? true : false;
+  }
+
 
 console.log(props);
 
@@ -78,7 +82,6 @@ console.log(props);
                     <h3
                       style={{
                         fontSize: "1.5em",
-                        textTransform: "uppercase",
                       }}
                     >
                       {`${props.selectedRecords?.NAME}`} & {`${props.selectedRecords?.SPOUSE}`}
@@ -95,6 +98,15 @@ console.log(props);
                     <Col span={8}>Date Of Birth</Col>
                     <Col span={16}>{props.selectedRecords?.DOB}</Col>
                   </Row>
+                  {(checkIfPunyaTithiExists(props.selectedRecords)) && (
+                  <Row
+                    gutter={24}
+                    style={{ paddingTop: 30, textAlign: "left" }}
+                  >
+                    <Col span={8}>PunyaThitii</Col>
+                    <Col span={16}>{props.selectedRecords?.PunyaThitii}</Col>
+                  </Row>
+                  )}
                   <Divider style={{ margin: "15px 0" }} />
                   <Row gutter={24} style={{ textAlign: "left" }}>
                     <Col span={8}>Anniversary</Col>
@@ -137,21 +149,21 @@ console.log(props);
                     renderItem={bObj => (
                         <List.Item>
                         {(bObj.Relation == 'H' || bObj.Relation == 'W') && (
-                            <p><b>Spouse:</b> <span style={{ textTransform: "uppercase",}}>{bObj.NAME}</span><br/>
+                            <p><b>Spouse:</b> <span>{bObj.NAME}</span><br/>
                                 <span><b>D.O.B:</b> {bObj.DOB}</span><br/>
                                 <span><b>Mobile No.:</b>{bObj.MOBILENO}</span><br/>
                                 <span style={{ textTransform: "lowercase",}}><b>{bObj.EMAILID}</b></span><br/>
                             </p>
                         )}
                         {(bObj.Relation == 'S') && (
-                            <p><b>Son:</b> <span style={{ textTransform: "uppercase",}}>{bObj.NAME}</span><br/>
+                            <p><b>Son:</b> <span style={{ textTransform: "capitalize",}}>{bObj.NAME}</span><br/>
                                 <span><b>D.O.B:</b> {bObj.DOB}</span><br/>
                                 <span><b>Mobile No.:</b>{bObj.MOBILENO}</span><br/>
                                 <span style={{ textTransform: "lowercase",}}><b>{bObj.EMAILID}</b></span><br/>
                             </p>
                         )}
                         {(bObj.Relation == 'D') && (
-                            <p><b>Daughter:</b> <span style={{ textTransform: "uppercase",}}>{bObj.NAME}</span><br/>
+                            <p><b>Daughter:</b> <span>{bObj.NAME}</span><br/>
                                 <span><b>D.O.B:</b> {bObj.DOB}</span><br/>
                                 <span><b>Mobile No.:</b>{bObj.MOBILENO}</span><br/>
                                 <span style={{ textTransform: "lowercase",}}><b>{bObj.EMAILID}</b></span><br/>
