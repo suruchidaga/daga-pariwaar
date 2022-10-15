@@ -71,17 +71,18 @@ function unflatten(items) {
 
 }
 function fillRemainingDetailsInParent(parentItem, childItem) {
+    parentItem['NAME'] = titleCase(parentItem.NAME);
     if (parentItem.RESADD !='') {
         parentItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
     }
-    if (parentItem.RESADD =='' && childItem.RESADD !='' && (childItem.Parent == parentItem.No) &&
+    /*if (parentItem.RESADD =='' && childItem.RESADD !='' && (childItem.Parent == parentItem.No) &&
      (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['RESADD'] = replaceNewLineWithBreakTag(childItem.RESADD);
     }
     if (parentItem.RESPHNO =='' && childItem.RESPHNO !='' && (childItem.Parent == parentItem.No) &&
         (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['RESPHNO'] = childItem.RESPHNO;
-    }
+    }*/
     if (childItem.Relation == 'H' || childItem.Relation == 'W' && (childItem.Parent == parentItem.No) &&
         (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['SPOUSE'] = childItem.NAME;
@@ -91,6 +92,7 @@ function fillRemainingDetailsInParent(parentItem, childItem) {
 function fillRemainingDetails(parentItem, childItem) {
 console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
     console.log(parentItem) ;
+    childItem['NAME'] = titleCase(childItem.NAME);
     if (childItem.Relation == 'H' || childItem.Relation == 'W' ) {
         childItem['DOA'] = parentItem.DOA;
         childItem['SPOUSE'] = parentItem.NAME;
@@ -110,14 +112,25 @@ console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
         childItem['FATHERINLAW'] = parentItem.FATHER;
         childItem['MOTHERINLAW'] = parentItem.MOTHER;
     }
-    if (childItem.RESADD =='' && (childItem.Parent == parentItem.No)) {
+    /*if (childItem.RESADD =='' && (childItem.Parent == parentItem.No)) {
         childItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
-    }
+    }*/
     if (childItem.RESPHNO =='' && (childItem.Parent == parentItem.No)) {
         childItem['RESPHNO'] = parentItem.RESPHNO;
     }
     console.log(childItem) ;
     return childItem;
+}
+function titleCase(str) {
+    if (typeof str !== 'undefined') {
+    return str
+        .split(' ')
+        .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+    } else {
+        return "";
+    }
+
 }
 function replaceNewLineWithBreakTag(text) {
   // Replace the \n with <br>
