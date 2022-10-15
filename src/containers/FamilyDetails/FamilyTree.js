@@ -64,32 +64,26 @@ const callbackCloseModal = () => {
           </div>
         )}
 
-        <div id= '${node.No}' className="col d-tree-head">
+        <div id= {node.No} className="col d-tree-head" style={{ fontSize: 18 }}>
         <Avatar size="small" icon={<UserOutlined />} />
-        <i className={`mr-1 fa fa-folder`}> </i>
-          {node.NAME} ({node.Relation})
+        <i className={`mr-2 fa fa-folder`}> </i>
+          {node.NAME}
+          {node.Relation != '' && (node.Relation == 'H' || node.Relation == 'W') && (
+            <span style= { { color: "gray" }}>  (Spouse)  </span>
+            )}
+          {node.Relation != '' && (node.Relation == 'S') && (
+            <span style= { { color: "blue" }}>  (Son)  </span>
+            )}
+          {node.Relation != '' && (node.Relation == 'D') && (
+            <span style= { { color: "pink" }}>  (Daughter)  </span>
+            )}
         {node.children.length > 0 && (
         <InfoCircleOutlined
-        style={{ color: "blue" }}
+        style={{ color: "gray" }}
                     onClick={() => showMemberDetails(props, node)}
         />
         )}
-        {(node.PunyaThitii != '' || node.DOB != '' || node.MOBILENO != '' || node.EMAILID != '') && (
-        <Card size="small" title="">
-        {node.PunyaThitii != '' && (
-                <p>Life Journey: <span>({node.DOB}) - ({node.PunyaThitii})</span></p>
-            )}
-        {node.PunyaThitii == '' && node.DOB != '' && (
-                <p>D.O.B.: <span>{node.DOB}</span></p>
-            )}
-        {node.MOBILENO != '' && (
-                <p>Phone: <span>{node.MOBILENO}</span></p>
-            )}
-        {node.EMAILID != '' && (
-                <p>EMAIL: <span>{node.EMAILID}</span></p>
-            )}
-    </Card>
-    )}
+
 
         </div>
       </div>
