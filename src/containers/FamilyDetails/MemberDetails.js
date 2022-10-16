@@ -84,7 +84,7 @@ console.log(props);
                         fontSize: "1.5em",
                       }}
                     >
-                      {`${props.selectedRecords?.NAME}`} & {`${props.selectedRecords?.SPOUSE}`}
+                      {`${props.selectedRecords?.NAME}`}
                     </h3>
 
                   </div>
@@ -123,7 +123,7 @@ console.log(props);
                     <Col span={16}>{props.selectedRecords?.MOBILENO}</Col>
                   </Row>
                   <Divider style={{ margin: "15px 0" }} />
-                  <Row gutter={24} style={{ textAlign: "left" }}>
+                  <Row gutter={24} style={{ textAlign: "left"}}>
                     <Col span={8}>Home Address</Col>
                     <Col span={16}>{props.selectedRecords?.RESADD}<br/>{props.selectedRecords?.RESPHNO}</Col>
                   </Row>
@@ -151,12 +151,15 @@ console.log(props);
                         {(bObj.Relation == 'H' || bObj.Relation == 'W') && (
                             <p><b>Spouse:</b> <span>{bObj.NAME}</span><br/>
                                 <span><b>D.O.B:</b> {bObj.DOB}</span><br/>
+                                {(checkIfPunyaTithiExists(bObj)) && (
+                                    <span><b>PunyaThitii:</b>{bObj.PunyaThitii}</span>
+                                  )}
                                 <span><b>Mobile No.:</b>{bObj.MOBILENO}</span><br/>
                                 <span style={{ textTransform: "lowercase",}}><b>{bObj.EMAILID}</b></span><br/>
                             </p>
                         )}
                         {(bObj.Relation == 'S') && (
-                            <p><b>Son:</b> <span style={{ textTransform: "capitalize",}}>{bObj.NAME}</span><br/>
+                            <p><b>Son:</b> <span>{bObj.NAME}</span><br/>
                                 <span><b>D.O.B:</b> {bObj.DOB}</span><br/>
                                 <span><b>Mobile No.:</b>{bObj.MOBILENO}</span><br/>
                                 <span style={{ textTransform: "lowercase",}}><b>{bObj.EMAILID}</b></span><br/>
