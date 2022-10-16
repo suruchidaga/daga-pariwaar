@@ -79,7 +79,7 @@ const callbackCloseModal = () => {
             )}
         {node.children.length > 0 && (
         <InfoCircleOutlined
-        style={{ color: "gray" }}
+        style={{ color: "gray", fontSize: 20, }}
                     onClick={() => showMemberDetails(props, node)}
         />
         )}
