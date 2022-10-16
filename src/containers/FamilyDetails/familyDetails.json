@@ -813,7 +813,7 @@
     "OFFICEADD": "",
     "OFFICEPHNO": "",
     "OFFICEEMAILID": "",
-    "FATHERINLAW": "LT.GHANSYAM  JI MUNDHRA",
+    "FATHERINLAW": "LT.GHANSYAM JI MUNDHRA",
     "MOTHERINLAW": "Lt. SUSHMA JI MUNDHRA"
   },
   {
@@ -1280,7 +1280,7 @@
     "DOB": "16.10.2009",
     "DOA": "",
     "PunyaThitii": "",
-    "MOBILENO": "",
+    "MOBILENO": "9175447359",
     "EMAILID": "avyuktdaga@gmail.com",
     "RESADD": "",
     "RESPHNO": "",
@@ -2680,7 +2680,7 @@
   },
   {
     "No": 142,
-    "Parent": 140,
+    "Parent": 141,
     "Relation": "W",
     "NAME": "MANJU DAMANI",
     "DOB": "23.05.1960",
@@ -2699,7 +2699,7 @@
   },
   {
     "No": 143,
-    "Parent": 140,
+    "Parent": 141,
     "Relation": "D",
     "NAME": "PRIYANKA RAWAT",
     "DOB": "27.03.1983",
@@ -2775,7 +2775,7 @@
   },
   {
     "No": 145,
-    "Parent": 140,
+    "Parent": 141,
     "Relation": "S",
     "NAME": "BRAJESH DAMANI",
     "DOB": "02.07.1984",
@@ -3226,7 +3226,7 @@
     "OFFICEADD": "",
     "OFFICEPHNO": "",
     "OFFICEEMAILID": "",
-    "FATHERINLAW": "LT. GANGADASJI  CHANDAK",
+    "FATHERINLAW": "LT. GANGADAS JI CHANDAK",
     "MOTHERINLAW": "LT. DAMMI BAI CHANDAK"
   },
   {
@@ -3459,7 +3459,7 @@
   },
   {
     "No": 181,
-    "Parent": 139,
+    "Parent": 179,
     "Relation": "D",
     "NAME": "RUDDHITA",
     "DOB": "11.06.1996",
@@ -4481,7 +4481,7 @@
     "OFFICEPHNO": "044-23780131\n044-23780132",
     "OFFICEEMAILID": "info@sarojprints.com",
     "FATHERINLAW": "JAG MOHAN JI CHANDAK",
-    "MOTHERINLAW": "SUMITRA  JI CHANDAK"
+    "MOTHERINLAW": "SUMITRA JI CHANDAK"
   },
   {
     "No": 235,
@@ -4542,7 +4542,7 @@
   },
   {
     "No": 238,
-    "Parent": 1,
+    "Parent": 8,
     "Relation": "S",
     "NAME": "LT. BADRI NARAYAN JI DAGA",
     "DOB": "08.11.1910",
@@ -4599,7 +4599,7 @@
   },
   {
     "No": 241,
-    "Parent": 1,
+    "Parent": 8,
     "Relation": "S",
     "NAME": "LT. JAI NARAYAN JI DAGA",
     "DOB": "18.11.1915",
