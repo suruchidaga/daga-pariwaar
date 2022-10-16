@@ -107,6 +107,12 @@ console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
             (parentItem.children.length > 0 && parentItem.children[0].Relation == 'W' ? parentItem.children[0].NAME : '');
     }
     if ((childItem.Relation == 'W' || childItem.Relation == 'H') && (childItem.Parent == parentItem.No)) {
+        if (parentItem.FATHERINLAW != '') {
+            parentItem['FATHERINLAW'] = titleCase(parentItem.FATHERINLAW);
+        }
+        if (parentItem.MOTHERINLAW != '') {
+            parentItem['MOTHERINLAW'] = titleCase(parentItem.MOTHERINLAW);
+        }
         childItem['FATHER'] = parentItem.FATHERINLAW;
         childItem['MOTHER'] = parentItem.MOTHERINLAW;
         childItem['FATHERINLAW'] = parentItem.FATHER;
@@ -122,6 +128,7 @@ console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
     return childItem;
 }
 function titleCase(str) {
+console.log(str.split(' '));
     if (typeof str !== 'undefined') {
     return str
         .split(' ')
