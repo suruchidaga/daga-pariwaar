@@ -72,10 +72,10 @@ function unflatten(items) {
 }
 function fillRemainingDetailsInParent(parentItem, childItem) {
     parentItem['NAME'] = titleCase(parentItem.NAME);
-    if (parentItem.RESADD !='') {
+    /*if (parentItem.RESADD !='') {
         parentItem['RESADD'] = replaceNewLineWithBreakTag(parentItem.RESADD);
     }
-    /*if (parentItem.RESADD =='' && childItem.RESADD !='' && (childItem.Parent == parentItem.No) &&
+    if (parentItem.RESADD =='' && childItem.RESADD !='' && (childItem.Parent == parentItem.No) &&
      (childItem.Relation == 'H' || childItem.Relation == 'W' || childItem.Relation == 'S') ) {
         parentItem['RESADD'] = replaceNewLineWithBreakTag(childItem.RESADD);
     }
@@ -93,6 +93,12 @@ function fillRemainingDetails(parentItem, childItem) {
 console.log("inside fillRemainingDetails: "+ childItem.NAME) ;
     console.log(parentItem) ;
     childItem['NAME'] = titleCase(childItem.NAME);
+    if (parentItem.EMAILID != '') {
+            parentItem['EMAILID'] = parentItem.EMAILID.toLowerCase();
+        }
+    if (childItem.EMAILID != '') {
+            childItem['EMAILID'] = childItem.EMAILID.toLowerCase();
+        }
     if (childItem.Relation == 'H' || childItem.Relation == 'W' ) {
         childItem['DOA'] = parentItem.DOA;
         childItem['SPOUSE'] = parentItem.NAME;
