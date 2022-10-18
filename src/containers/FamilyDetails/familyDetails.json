@@ -1826,7 +1826,7 @@
   {
     "No": 97,
     "Parent": 95,
-    "Relation": "",
+    "Relation": "D",
     "NAME": "Dharika Bahety",
     "DOB": "05.02.2016",
     "DOA": "",
@@ -1845,7 +1845,7 @@
   {
     "No": 98,
     "Parent": 95,
-    "Relation": "",
+    "Relation": "S",
     "NAME": "Avyansh Bahety",
     "DOB": "18.10.2018",
     "DOA": "",
@@ -4525,7 +4525,7 @@
     "No": 237,
     "Parent": 234,
     "Relation": "S",
-    "NAME": "RIYANSH DAGA",
+    "NAME": "REYANSH DAGA",
     "DOB": "09.04.2012",
     "DOA": "",
     "PunyaThitii": "",
