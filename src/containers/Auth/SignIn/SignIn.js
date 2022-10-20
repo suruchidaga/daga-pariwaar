@@ -8,7 +8,7 @@ import IntlMessages from "@components/utility/intlMessages";
 import Loader from "@components/utility/loader";
 import authAction from "@redux/auth/actions";
 import appAction from "@redux/app/actions";
-import Logo from "@assets/images/logo.jpg";
+import Logo from "@assets/images/family_logo.jpeg";
 import SignInStyleWrapper from "./SignIn.styles";
 import { useEffect } from "react";
 
