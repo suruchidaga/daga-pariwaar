@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/daga-pariwaar/static/css/main.4169f80c.css",
-    "main.js": "/daga-pariwaar/static/js/main.a8b2705c.js",
+    "main.js": "/daga-pariwaar/static/js/main.fa8abf57.js",
     "static/js/66.5a077670.chunk.js": "/daga-pariwaar/static/js/66.5a077670.chunk.js",
     "static/css/185.74b5855d.chunk.css": "/daga-pariwaar/static/css/185.74b5855d.chunk.css",
     "static/js/185.536d0f7d.chunk.js": "/daga-pariwaar/static/js/185.536d0f7d.chunk.js",
@@ -20,14 +20,14 @@
     "static/js/882.9cc0a035.chunk.js": "/daga-pariwaar/static/js/882.9cc0a035.chunk.js",
     "static/css/572.02b284a7.chunk.css": "/daga-pariwaar/static/css/572.02b284a7.chunk.css",
     "static/js/572.2a1635d6.chunk.js": "/daga-pariwaar/static/js/572.2a1635d6.chunk.js",
-    "static/js/952.6de222f9.chunk.js": "/daga-pariwaar/static/js/952.6de222f9.chunk.js",
+    "static/js/952.9bb69a26.chunk.js": "/daga-pariwaar/static/js/952.9bb69a26.chunk.js",
     "static/media/family_logo.jpeg": "/daga-pariwaar/static/media/family_logo.f47ff0af8a68b58c2676.jpeg",
     "static/media/family_tree.jpeg": "/daga-pariwaar/static/media/family_tree.20ca7d507224a8528f45.jpeg",
     "static/media/dashbard_bg.png": "/daga-pariwaar/static/media/dashbard_bg.66133001077958f2ca71.png",
     "static/media/events.jpg": "/daga-pariwaar/static/media/events.1f228f03c46fdea67393.jpg",
     "index.html": "/daga-pariwaar/index.html",
     "main.4169f80c.css.map": "/daga-pariwaar/static/css/main.4169f80c.css.map",
-    "main.a8b2705c.js.map": "/daga-pariwaar/static/js/main.a8b2705c.js.map",
+    "main.fa8abf57.js.map": "/daga-pariwaar/static/js/main.fa8abf57.js.map",
     "66.5a077670.chunk.js.map": "/daga-pariwaar/static/js/66.5a077670.chunk.js.map",
     "185.74b5855d.chunk.css.map": "/daga-pariwaar/static/css/185.74b5855d.chunk.css.map",
     "185.536d0f7d.chunk.js.map": "/daga-pariwaar/static/js/185.536d0f7d.chunk.js.map",
@@ -46,10 +46,10 @@
     "882.9cc0a035.chunk.js.map": "/daga-pariwaar/static/js/882.9cc0a035.chunk.js.map",
     "572.02b284a7.chunk.css.map": "/daga-pariwaar/static/css/572.02b284a7.chunk.css.map",
     "572.2a1635d6.chunk.js.map": "/daga-pariwaar/static/js/572.2a1635d6.chunk.js.map",
-    "952.6de222f9.chunk.js.map": "/daga-pariwaar/static/js/952.6de222f9.chunk.js.map"
+    "952.9bb69a26.chunk.js.map": "/daga-pariwaar/static/js/952.9bb69a26.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4169f80c.css",
-    "static/js/main.a8b2705c.js"
+    "static/js/main.fa8abf57.js"
   ]
 }
