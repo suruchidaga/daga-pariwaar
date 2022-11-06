@@ -1,0 +1,5 @@
+/*! THIS FILE IS AUTO-GENERATED */
+
+/*! https://mths.be/punycode v1.3.2 by @mathias */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
