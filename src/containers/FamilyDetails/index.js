@@ -155,7 +155,7 @@ function replaceNewLineWithBreakTag(text) {
   return otext;
 }
 
-export default function FamilyDetails() {
+export default function FamilyDetails1() {
   const selectedMember = loadState("selectedMember");
   const selectedMemberName = `${selectedMember?.name?.first} ${selectedMember?.name?.last}`;
    const tree = [];
