@@ -8,10 +8,13 @@ import FamilyDetailsWrapper from "./styles";
 import React, { useRef, useState } from "react";
 import { Tree } from "./FamilyTree";
 //import Tree from "../../components/uielements/tree";
+import UploadImg from "../../components/utility/UploadImg";
 import {
   DownOutlined,
 } from "@ant-design/icons";
 import familyDetails from "./familyDetails.json";
+
+const IMGPATH = "https://bnyaacwroakthbkyxsss.supabase.co/storage/v1/object/public/family/";
 
 function unflatten(items) {
   var tree = [],
@@ -163,6 +166,18 @@ export default function FamilyDetails1() {
   const [treeData, setTreeData] = useState(() => tree);
   const [rawFamilyData, setRawFamilyData] = useState(() => familyDetails);
 
+  const [avatar, setAvatar] = useState("");
+
+  const onSuccess = (path) => {
+    setAvatar(IMGPATH + path);
+  };
+
+  const onError = (error) => {
+    console.log(error);
+  };
+
+
+
 
   //setTreeData(unflatten(familyDetails));
   //setTreeData(unflatten(familyDetails));
@@ -175,6 +190,14 @@ export default function FamilyDetails1() {
   return (
     <FamilyDetailsWrapper>
       <ContentHeader headerTitle="Family Details" />
+       {<UploadImg {...{ onSuccess, onError }} />}
+
+      {avatar && (
+        <>
+          <img width={200} src={avatar} alt="" />
+          <input type="hidden" name="avatar" value={avatar} />
+        </>
+      )}
       <ReadFamilyDetails treeData = {treeData}/>
     </FamilyDetailsWrapper>
   );
