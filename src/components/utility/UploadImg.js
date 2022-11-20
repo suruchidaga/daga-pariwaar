@@ -6,20 +6,18 @@ export default function UploadImg({ onSuccess, onError }) {
 
     if (e.target.files) {
       file = e.target.files[0];
-    }
+      const fileName = file?.name;
 
-    const ext = file?.name.split(".").pop();
-    const fileName = `${new Date().getTime()}.${ext}`;
+      const { data, error } = await supabase.storage
+        .from("family")
+        .upload("avatar/" + fileName, file);
 
-    const { data, error } = await supabase.storage
-      .from("family")
-      .upload("avatar/" + fileName, file);
-
-    if (data) {
-      onSuccess(data.path);
-    }
-    if (error) {
-      onError(error);
+      if (data) {
+        onSuccess(data.path);
+      }
+      if (error) {
+        onError(error);
+      }
     }
   };
 
