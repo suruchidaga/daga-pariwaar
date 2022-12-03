@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import FamilyDetailsWrapper from "../FamilyDetails/styles";
 import TreeIcon from "@assets/images/family_tree.jpeg";
 import EventsIcon from "@assets/images/events.jpg";
+import PrayersIcon from "@assets/images/prayer_time.jpg";
 
 export default function DefaultDashboard() {
   const [loading, setLoading] = useState(false);
@@ -38,10 +39,10 @@ export default function DefaultDashboard() {
                 >
                     <article className="card">
                     <div className="card-image">
-                      <img src={TreeIcon} alt="Family Details" />
+                      <img src={TreeIcon} alt="Family Hierarchy" />
                     </div>
                     <div className="card-content">
-                      <h4 className="card-name">View Family Details</h4>
+                      <h4 className="card-name">Family Hierarchy</h4>
                     </div>
                   </article>
               </Link>
@@ -53,10 +54,25 @@ export default function DefaultDashboard() {
                 >
                     <article className="card">
                     <div className="card-image">
-                      <img src={EventsIcon} alt="Upcoming Birthdays / Anniversaries" />
+                      <img src={EventsIcon} alt="Celebration Times" />
                     </div>
                     <div className="card-content">
-                      <h4 className="card-name">Upcoming Birthdays / Anniversaries</h4>
+                      <h4 className="card-name">Upcoming Celebration Times</h4>
+                    </div>
+                  </article>
+              </Link>
+              </li>
+              <li key="prayer" style={{ cursor: "pointer" }}>
+                <Link
+                    to={{ pathname: `./dashboard/prayers` }}
+                    key="prayer-link"
+                >
+                    <article className="card">
+                    <div className="card-image">
+                      <img src={PrayersIcon} alt="Prayers" />
+                    </div>
+                    <div className="card-content">
+                      <h4 className="card-name">Morning Prayers</h4>
                     </div>
                   </article>
               </Link>
