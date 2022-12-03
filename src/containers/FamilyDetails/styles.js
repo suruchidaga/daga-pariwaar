@@ -131,6 +131,36 @@ const FamilyDetailsWrapper = styled.div`
   .css-fix {
     white-space: pre-wrap;
   }
+
+  .full-control {
+  margin-top: -1em;
+}
+
+.full-control .toggles label:first-of-type {
+  margin-right: 1.5em;
+}
+
+.full-control .toggles input {
+  margin-left: .5em;
+}
+
+.full-control .volume,
+.full-control .seek {
+  margin-bottom: .5em;
+}
+
+.full-control .volume .slider-container,
+.full-control .seek .slider-container {
+  margin: auto .5em;
+}
+
+.slider-container input {
+  vertical-align: bottom;
+}
+
+.rate {
+  margin-bottom: 0.5em;
+}
 `;
 
 export default WithDirection(FamilyDetailsWrapper);

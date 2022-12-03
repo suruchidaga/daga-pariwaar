@@ -158,7 +158,7 @@ function replaceNewLineWithBreakTag(text) {
   return otext;
 }
 
-export default function FamilyDetails() {
+export default function FamilyDetails1() {
   const selectedMember = loadState("selectedMember");
   const selectedMemberName = `${selectedMember?.name?.first} ${selectedMember?.name?.last}`;
    const tree = [];
@@ -190,7 +190,14 @@ export default function FamilyDetails() {
   return (
     <FamilyDetailsWrapper>
       <ContentHeader headerTitle="Family Details" />
-       
+       {<UploadImg {...{ onSuccess, onError }} />}
+
+      {avatar && (
+        <>
+          <img width={200} src={avatar} alt="" />
+          <input type="hidden" name="avatar" value={avatar} />
+        </>
+      )}
       <ReadFamilyDetails treeData = {treeData}/>
     </FamilyDetailsWrapper>
   );
