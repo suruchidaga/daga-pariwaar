@@ -17,6 +17,14 @@ const routes = [
     component: lazy(() => import("@containers/FamilyDetails/Events")),
   },
   {
+    path: "prayers",
+    component: lazy(() => import("@containers/MediaLibrary/Prayers")),
+  },/*
+  {
+    path: "view-album/:aid",
+    component: lazy(() => import("@containers/MediaLibrary/ViewAlbum")),
+  },*/
+  {
     path: "settings",
     component: lazy(() => import("@containers/Settings/Settings")),
   },
@@ -24,6 +32,7 @@ const routes = [
 
 export default function AppRouter() {
   const { url } = useRouteMatch();
+  console.log(url)
   return (
     <Suspense fallback={<Loader />}>
       <Switch>
